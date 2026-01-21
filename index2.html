@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alejandro | Full Stack Developer</title>
+    <style>
+        :root {
+            --bg: #0f172a;       /* Fondo oscuro */
+            --card: #1e293b;     /* Tarjetas */
+            --border: #334155;   /* Bordes sutiles */
+            --text: #f1f5f9;     /* Texto principal */
+            --muted: #94a3b8;    /* Texto secundario */
+            
+            /* Colores de Marca/Tecnología */
+            --laravel: #ef4444;  /* Rojo Laravel */
+            --php: #818cf8;      /* Azul PHP */
+            --docker: #38bdf8;   /* Azul Docker */
+            --js: #facc15;       /* Amarillo JS */
+            --green: #22c55e;    /* Verde Activo */
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* --- GRID PRINCIPAL (Bento Layout) --- */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: 320px 1fr 1fr; /* 3 columnas */
+            grid-template-rows: auto auto;
+            gap: 16px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- 1. PERFIL (COLUMNA IZQUIERDA) --- */
+        .profile-card {
+            grid-row: span 2;
+            text-align: center;
+            align-items: center;
+        }
+
+        .avatar-container {
+            position: relative;
+            margin-bottom: 15px;
+        }
+        .avatar {
+            width: 100px;
+            height: 100px;
+            background: #0f172a;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            display: flex; align-items: center; justify-content: center; font-size: 3rem;
+        }
+        .status-badge {
+            position: absolute;
+            bottom: 0; right: 0;
+            background: var(--card);
+            border: 1px solid var(--green);
+            color: var(--green);
+            font-size: 0.7rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: flex; align-items: center; gap: 5px;
+        }
+        .pulse { width: 8px; height: 8px; background: var(--green); border-radius: 50%; box-shadow: 0 0 0 rgba(34, 197, 94, 0.4); animation: pulse 2s infinite; }
+
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); } 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); } }
+
+        h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 5px; }
+        .subtitle { color: var(--docker); font-size: 0.95rem; font-weight: 500; margin-bottom: 20px; }
+        .bio { font-size: 0.9rem; color: var(--muted); line-height: 1.6; margin-bottom: auto; }
+
+        .social-links { margin-top: 20px; width: 100%; display: flex; gap: 10px; flex-direction: column; }
+        .btn { padding: 10px; border-radius: 8px; text-decoration: none; font-weight: 600; text-align: center; font-size: 0.9rem; transition: 0.2s; }
+        .btn-primary { background: var(--text); color: var(--bg); }
+        .btn-outline { border: 1px solid var(--border); color: var(--muted); }
+        .btn:hover { transform: translateY(-2px); opacity: 0.9; }
+
+        /* --- 2. EXPERIENCIA (CENTRO ARRIBA) --- */
+        .exp-card {
+            grid-column: span 2;
+            background: linear-gradient(to right, #1e293b, #172033);
+            border-left: 4px solid var(--laravel);
+        }
+        
+        .exp-header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 15px; }
+        .company-logo { width: 40px; height: 40px; background: #fff; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #000; font-size: 1.2rem; }
+        .role-title { font-size: 1.2rem; font-weight: 700; color: #fff; }
+        .company-name { color: var(--muted); font-size: 0.9rem; display: flex; align-items: center; gap: 6px; }
+        .date-badge { background: rgba(255,255,255,0.05); padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; color: var(--text); }
+
+        .tech-pills { display: flex; gap: 8px; margin-top: 15px; flex-wrap: wrap; }
+        .pill { font-size: 0.75rem; padding: 4px 10px; border-radius: 20px; font-weight: 600; }
+        
+        .pill-laravel { background: rgba(239, 68, 68, 0.15); color: var(--laravel); }
+        .pill-docker { background: rgba(56, 189, 248, 0.15); color: var(--docker); }
+        .pill-js { background: rgba(250, 204, 21, 0.15); color: var(--js); }
+
+        /* --- 3. TERMINAL (CENTRO ABAJO) --- */
+        .terminal-card {
+            font-family: 'Fira Code', monospace;
+            background: #000;
+            border: 1px solid #333;
+            font-size: 0.85rem;
+        }
+        .cmd-line { margin-bottom: 8px; display: flex; }
+        .prompt { color: var(--green); margin-right: 10px; }
+        .output { color: var(--muted); margin-left: 20px; display: block; margin-bottom: 15px; }
+
+        /* --- 4. PROYECTOS (DERECHA ABAJO) --- */
+        .projects-card {
+            grid-row: span 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .project-item {
+            background: rgba(255,255,255,0.02);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid transparent;
+            transition: 0.2s;
+            text-decoration: none;
+        }
+        .project-item:hover { border-color: var(--border); background: rgba(255,255,255,0.05); }
+        
+        .p-top { display: flex; justify-content: space-between; margin-bottom: 5px; }
+        .p-name { color: var(--text); font-weight: 600; font-size: 1rem; }
+        .p-private { font-size: 0.7rem; border: 1px solid #444; padding: 2px 6px; border-radius: 4px; color: #888; height: fit-content; }
+        .p-public { font-size: 0.7rem; border: 1px solid var(--green); color: var(--green); padding: 2px 6px; border-radius: 4px; height: fit-content; }
+        .p-desc { font-size: 0.8rem; color: var(--muted); }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .bento-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+            .exp-card { grid-column: span 1; }
+            .profile-card { grid-row: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bento-grid">
+        
+        <div class="card profile-card">
+            <div class="avatar-container">
+                <div class="avatar">👨‍💻</div>
+                <div class="status-badge"><div class="pulse"></div> Trabajando</div>
+            </div>
+            <h1>Alejandro</h1>
+            <div class="subtitle">Full Stack Developer</div>
+            
+            <p class="bio">
+                Especializado en el ecosistema <strong>PHP / Laravel</strong>. 
+                Actualmente desarrollo soluciones escalables y mantengo arquitecturas en producción.
+            </p>
+
+            <div class="social-links">
+                <a href="mailto:tuemail@ejemplo.com" class="btn btn-primary">Contactar</a>
+                <a href="https://github.com/andreubaby" target="_blank" class="btn btn-outline">GitHub</a>
+                <a href="https://www.linkedin.com/in/alejandro-andreu-595088215/" target="_blank" class="btn btn-outline">LinkedIn</a>
+            </div>
+            
+            <div style="margin-top: 20px; font-size: 0.8rem; color: var(--muted);">
+                📍 Santomera, Murcia
+            </div>
+        </div>
+
+        <div class="card exp-card">
+            <div class="exp-header">
+                <div style="display:flex; gap:15px; align-items:center;">
+                    <div class="company-logo">BP</div> <div>
+                        <div class="role-title">Desarrollador Full Stack</div>
+                        <div class="company-name">Babyplant</div>
+                    </div>
+                </div>
+                <span class="date-badge">Sept 2024 - Actualidad</span>
+            </div>
+            
+            <p style="font-size: 0.9rem; color: #cbd5e1; margin-bottom: 10px;">
+                Desarrollo y mantenimiento de aplicaciones web críticas. Implementación de nuevas funcionalidades Full Stack y optimización de APIs REST.
+            </p>
+            
+            <div class="tech-pills">
+                <span class="pill pill-laravel">Laravel</span>
+                <span class="pill pill-js">JavaScript</span>
+                <span class="pill pill-docker">Docker</span>
+                <span class="pill" style="border:1px solid #475569; color:#94a3b8;">MySQL</span>
+            </div>
+        </div>
+
+        <div class="card terminal-card">
+            <div class="cmd-line">
+                <span class="prompt">➜</span> 
+                <span style="color: #fff">ls ~/projects/active</span>
+            </div>
+            <div class="output">
+                gestor_user/ <span style="color: #666"> (Blade)</span><br>
+                cronos-backend/ <span style="color: #666"> (PHP API)</span><br>
+                semillas/ <span style="color: #666"> (Laravel)</span>
+            </div>
+
+            <div class="cmd-line">
+                <span class="prompt">➜</span> 
+                <span style="color: #fff">cat stack_overview.json</span>
+            </div>
+            <div class="output" style="color: #e2e8f0;">
+                {<br>
+                &nbsp;&nbsp;"backend": ["PHP 8.x", "Laravel", "Java"],<br>
+                &nbsp;&nbsp;"frontend": ["Blade", "JavaScript", "TS"],<br>
+                &nbsp;&nbsp;"tools": ["Docker", "Git", "Postman"]<br>
+                }
+            </div>
+        </div>
+
+        <div class="card projects-card">
+            <h3 style="font-size:1.1rem; color:#fff; margin-bottom:10px;">Repositorios Recientes</h3>
+            
+            <a href="https://github.com/andreubaby/gestor_user" target="_blank" class="project-item">
+                <div class="p-top">
+                    <span class="p-name">📂 gestor_user</span>
+                    <span class="p-public">Public</span>
+                </div>
+                <div class="p-desc">Sistema de gestión con Blade.</div>
+                <div style="margin-top:8px; display:flex; gap:5px;">
+                    <span class="pill pill-laravel" style="font-size:0.65rem;">Laravel</span>
+                    <span class="pill" style="font-size:0.65rem; border:1px solid #444; color:#aaa;">Blade</span>
+                </div>
+            </a>
+
+            <a href="https://github.com/andreubaby" target="_blank" class="project-item">
+                <div class="p-top">
+                    <span class="p-name">🔒 cronos-backend</span>
+                    <span class="p-private">Private</span>
+                </div>
+                <div class="p-desc">API Backend para gestión de tiempos.</div>
+                <div style="margin-top:8px; display:flex; gap:5px;">
+                    <span class="pill pill-docker" style="font-size:0.65rem;">PHP</span>
+                    <span class="pill" style="font-size:0.65rem; border:1px solid #444; color:#aaa;">API Rest</span>
+                </div>
+            </a>
+            
+             <a href="https://github.com/andreubaby" target="_blank" class="project-item">
+                <div class="p-top">
+                    <span class="p-name">🔒 Camioneros-V2</span>
+                    <span class="p-private">Private</span>
+                </div>
+                <div class="p-desc">Logística y gestión de rutas.</div>
+                <div style="margin-top:8px; display:flex; gap:5px;">
+                    <span class="pill" style="font-size:0.65rem; border:1px solid #f59e0b; color:#f59e0b;">Java</span>
+                </div>
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
