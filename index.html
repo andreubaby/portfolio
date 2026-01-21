@@ -91,7 +91,15 @@
 
         h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 5px; }
         .subtitle { color: var(--docker); font-size: 0.95rem; font-weight: 500; margin-bottom: 20px; }
-        .bio { font-size: 0.9rem; color: var(--muted); line-height: 1.6; margin-bottom: auto; }
+        
+        /* Bio ajustada para que quepa bien */
+        .bio { 
+            font-size: 0.9rem; 
+            color: var(--muted); 
+            line-height: 1.6; 
+            margin-bottom: auto; 
+            text-align: left; /* Alineado a la izquierda para mejor lectura del párrafo */
+        }
 
         .social-links { margin-top: 20px; width: 100%; display: flex; gap: 10px; flex-direction: column; }
         .btn { padding: 10px; border-radius: 8px; text-decoration: none; font-weight: 600; text-align: center; font-size: 0.9rem; transition: 0.2s; }
@@ -151,7 +159,7 @@
         .p-name { color: var(--text); font-weight: 600; font-size: 1rem; }
         .p-private { font-size: 0.7rem; border: 1px solid #444; padding: 2px 6px; border-radius: 4px; color: #888; height: fit-content; }
         .p-public { font-size: 0.7rem; border: 1px solid var(--green); color: var(--green); padding: 2px 6px; border-radius: 4px; height: fit-content; }
-        .p-desc { font-size: 0.8rem; color: var(--muted); }
+        .p-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.4; }
 
         /* RESPONSIVE */
         @media (max-width: 900px) {
@@ -174,8 +182,10 @@
             <div class="subtitle">Full Stack Developer</div>
             
             <p class="bio">
-                Especializado en el ecosistema <strong>PHP / Laravel</strong>. 
-                Actualmente desarrollo soluciones escalables y mantengo arquitecturas en producción.
+                Actualmente desarrollo soluciones en <strong>Babyplant Spain</strong>. 
+                <br><br>
+                Soy experto en unir lógica de negocio compleja (PHP/Laravel) con arquitecturas modernas.
+                Me enfoco en crear código limpio, APIs REST eficientes y entornos Dockerizados listos para producción.
             </p>
 
             <div class="social-links">
@@ -192,9 +202,10 @@
         <div class="card exp-card">
             <div class="exp-header">
                 <div style="display:flex; gap:15px; align-items:center;">
-                    <div class="company-logo">BP</div> <div>
+                    <div class="company-logo">BP</div> 
+                    <div>
                         <div class="role-title">Desarrollador Full Stack</div>
-                        <div class="company-name">Babyplant</div>
+                        <div class="company-name">Babyplant Spain</div>
                     </div>
                 </div>
                 <span class="date-badge">Sept 2024 - Actualidad</span>
@@ -244,7 +255,9 @@
                     <span class="p-name">📂 gestor_user</span>
                     <span class="p-public">Public</span>
                 </div>
-                <div class="p-desc">Sistema de gestión con Blade.</div>
+                <div class="p-desc">
+                    Panel administrativo completo. Implementa autenticación segura, roles de usuario y vistas dinámicas con Blade.
+                </div>
                 <div style="margin-top:8px; display:flex; gap:5px;">
                     <span class="pill pill-laravel" style="font-size:0.65rem;">Laravel</span>
                     <span class="pill" style="font-size:0.65rem; border:1px solid #444; color:#aaa;">Blade</span>
@@ -256,7 +269,9 @@
                     <span class="p-name">🔒 cronos-backend</span>
                     <span class="p-private">Private</span>
                 </div>
-                <div class="p-desc">API Backend para gestión de tiempos.</div>
+                <div class="p-desc">
+                    Núcleo lógico para control de tiempos y personal. API RESTful pura en PHP optimizada para alto rendimiento.
+                </div>
                 <div style="margin-top:8px; display:flex; gap:5px;">
                     <span class="pill pill-docker" style="font-size:0.65rem;">PHP</span>
                     <span class="pill" style="font-size:0.65rem; border:1px solid #444; color:#aaa;">API Rest</span>
@@ -268,7 +283,9 @@
                     <span class="p-name">🔒 Camioneros-V2</span>
                     <span class="p-private">Private</span>
                 </div>
-                <div class="p-desc">Logística y gestión de rutas.</div>
+                <div class="p-desc">
+                    Sistema logístico para gestión de flotas. Lógica de negocio robusta en Java para cálculo de rutas.
+                </div>
                 <div style="margin-top:8px; display:flex; gap:5px;">
                     <span class="pill" style="font-size:0.65rem; border:1px solid #f59e0b; color:#f59e0b;">Java</span>
                 </div>
