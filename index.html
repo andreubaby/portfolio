@@ -3,297 +3,290 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alejandro | Full Stack Developer</title>
+    <title>Alejandro | Desarrollador</title>
     <style>
         :root {
-            --bg: #0f172a;       /* Fondo oscuro */
-            --card: #1e293b;     /* Tarjetas */
-            --border: #334155;   /* Bordes sutiles */
-            --text: #f1f5f9;     /* Texto principal */
-            --muted: #94a3b8;    /* Texto secundario */
-            
-            /* Colores de Marca/Tecnología */
-            --laravel: #ef4444;  /* Rojo Laravel */
-            --php: #818cf8;      /* Azul PHP */
-            --docker: #38bdf8;   /* Azul Docker */
-            --js: #facc15;       /* Amarillo JS */
-            --green: #22c55e;    /* Verde Activo */
+            --primary: #4f46e5;   /* Indigo suave */
+            --secondary: #ec4899; /* Rosa suave */
+            --text-main: #1e293b;
+            --text-light: #64748b;
+            --bg-glass: rgba(255, 255, 255, 0.85);
+            --shadow: 0 10px 40px -10px rgba(0,0,0,0.1);
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #f1f5f9;
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
+                radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
+            background-size: cover;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
+            color: var(--text-main);
         }
 
-        /* --- GRID PRINCIPAL (Bento Layout) --- */
-        .bento-grid {
-            display: grid;
-            grid-template-columns: 320px 1fr 1fr; /* 3 columnas */
-            grid-template-rows: auto auto;
-            gap: 16px;
-            max-width: 1200px;
+        .glass-container {
+            background: var(--bg-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 24px;
+            border: 1px solid rgba(255,255,255,0.5);
+            box-shadow: var(--shadow);
+            max-width: 900px;
             width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            overflow: hidden;
         }
 
-        .card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 24px;
-            position: relative;
-            overflow: hidden;
+        /* --- IZQUIERDA: PERFIL PERSONAL --- */
+        .profile-side {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 40px 30px;
             display: flex;
             flex-direction: column;
-        }
-
-        /* --- 1. PERFIL (COLUMNA IZQUIERDA) --- */
-        .profile-card {
-            grid-row: span 2;
-            text-align: center;
             align-items: center;
+            text-align: center;
+            border-right: 1px solid rgba(0,0,0,0.05);
         }
 
+        /* --- NUEVO CSS PARA EL AVATAR Y LA ETIQUETA --- */
         .avatar-container {
             position: relative;
-            margin-bottom: 15px;
+            width: 120px;
+            height: 120px;
+            margin-bottom: 20px;
         }
-        .avatar {
-            width: 100px;
-            height: 100px;
-            background: #0f172a;
+
+        .avatar-img-wrapper {
+            width: 100%;
+            height: 100%;
+            background: #fff;
             border-radius: 50%;
-            border: 2px solid var(--border);
-            display: flex; align-items: center; justify-content: center; font-size: 3rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden; /* Esto recorta la foto en círculo */
         }
-        .status-badge {
+
+        .avatar-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .status-pill {
             position: absolute;
-            bottom: 0; right: 0;
-            background: var(--card);
-            border: 1px solid var(--green);
-            color: var(--green);
-            font-size: 0.7rem;
-            padding: 4px 10px;
+            bottom: -5px; /* La movemos un poco hacia abajo */
+            right: -10px; /* La movemos un poco hacia la derecha */
+            background: #dcfce7;
+            color: #166534;
+            padding: 4px 12px;
             border-radius: 20px;
-            font-weight: bold;
-            display: flex; align-items: center; gap: 5px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border: 2px solid #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra ligera para que destaque */
+            display: flex; align-items: center; gap: 6px;
+            z-index: 2;
         }
-        .pulse { width: 8px; height: 8px; background: var(--green); border-radius: 50%; box-shadow: 0 0 0 rgba(34, 197, 94, 0.4); animation: pulse 2s infinite; }
+        /* -------------------------------------------- */
 
-        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); } 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); } }
+        .dot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; }
 
-        h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 5px; }
-        .subtitle { color: var(--docker); font-size: 0.95rem; font-weight: 500; margin-bottom: 20px; }
+        h1 { font-size: 1.8rem; color: #0f172a; margin-bottom: 5px; }
+        .role { color: var(--primary); font-weight: 600; font-size: 0.95rem; margin-bottom: 25px; letter-spacing: 0.5px; }
+
+        .bio {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .btn-base {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .btn-primary { 
+            background: var(--text-main); 
+            color: #fff; 
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2); 
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(15, 23, 42, 0.3); opacity: 0.9; }
         
-        /* Bio ajustada para que quepa bien */
-        .bio { 
-            font-size: 0.9rem; 
-            color: var(--muted); 
-            line-height: 1.6; 
-            margin-bottom: auto; 
-            text-align: left; /* Alineado a la izquierda para mejor lectura del párrafo */
-        }
+        .btn-ghost { background: transparent; color: var(--text-light); border: 1px solid #cbd5e1; }
+        .btn-ghost:hover { border-color: var(--primary); color: var(--primary); background: #fff; }
 
-        .social-links { margin-top: 20px; width: 100%; display: flex; gap: 10px; flex-direction: column; }
-        .btn { padding: 10px; border-radius: 8px; text-decoration: none; font-weight: 600; text-align: center; font-size: 0.9rem; transition: 0.2s; }
-        .btn-primary { background: var(--text); color: var(--bg); }
-        .btn-outline { border: 1px solid var(--border); color: var(--muted); }
-        .btn:hover { transform: translateY(-2px); opacity: 0.9; }
-
-        /* --- 2. EXPERIENCIA (CENTRO ARRIBA) --- */
-        .exp-card {
-            grid-column: span 2;
-            background: linear-gradient(to right, #1e293b, #172033);
-            border-left: 4px solid var(--laravel);
-        }
-        
-        .exp-header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 15px; }
-        .company-logo { width: 40px; height: 40px; background: #fff; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #000; font-size: 1.2rem; }
-        .role-title { font-size: 1.2rem; font-weight: 700; color: #fff; }
-        .company-name { color: var(--muted); font-size: 0.9rem; display: flex; align-items: center; gap: 6px; }
-        .date-badge { background: rgba(255,255,255,0.05); padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; color: var(--text); }
-
-        .tech-pills { display: flex; gap: 8px; margin-top: 15px; flex-wrap: wrap; }
-        .pill { font-size: 0.75rem; padding: 4px 10px; border-radius: 20px; font-weight: 600; }
-        
-        .pill-laravel { background: rgba(239, 68, 68, 0.15); color: var(--laravel); }
-        .pill-docker { background: rgba(56, 189, 248, 0.15); color: var(--docker); }
-        .pill-js { background: rgba(250, 204, 21, 0.15); color: var(--js); }
-
-        /* --- 3. TERMINAL (CENTRO ABAJO) --- */
-        .terminal-card {
-            font-family: 'Fira Code', monospace;
-            background: #000;
-            border: 1px solid #333;
-            font-size: 0.85rem;
-        }
-        .cmd-line { margin-bottom: 8px; display: flex; }
-        .prompt { color: var(--green); margin-right: 10px; }
-        .output { color: var(--muted); margin-left: 20px; display: block; margin-bottom: 15px; }
-
-        /* --- 4. PROYECTOS (DERECHA ABAJO) --- */
-        .projects-card {
-            grid-row: span 1;
+        /* --- DERECHA: EXPERIENCIA Y PROYECTOS --- */
+        .content-side {
+            padding: 40px;
             display: flex;
             flex-direction: column;
+            gap: 30px;
+        }
+
+        h2 { font-size: 1.1rem; color: #334155; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        h2::after { content: ''; flex: 1; height: 1px; background: #e2e8f0; }
+
+        .exp-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid #f1f5f9;
+            position: relative;
+            transition: 0.2s;
+        }
+        .exp-card:hover { border-color: var(--primary); box-shadow: 0 4px 20px rgba(79, 70, 229, 0.05); }
+        
+        .exp-header { display: flex; justify-content: space-between; margin-bottom: 8px; }
+        .company { font-weight: 700; color: #0f172a; font-size: 1rem; }
+        .date { font-size: 0.8rem; color: #94a3b8; background: #f8fafc; padding: 2px 8px; border-radius: 6px; }
+        .job-title { color: var(--primary); font-size: 0.9rem; font-weight: 500; margin-bottom: 10px; }
+        .exp-desc { font-size: 0.85rem; color: var(--text-light); line-height: 1.5; }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 15px;
         }
-        .project-item {
-            background: rgba(255,255,255,0.02);
-            padding: 15px;
-            border-radius: 10px;
-            border: 1px solid transparent;
-            transition: 0.2s;
-            text-decoration: none;
-        }
-        .project-item:hover { border-color: var(--border); background: rgba(255,255,255,0.05); }
-        
-        .p-top { display: flex; justify-content: space-between; margin-bottom: 5px; }
-        .p-name { color: var(--text); font-weight: 600; font-size: 1rem; }
-        .p-private { font-size: 0.7rem; border: 1px solid #444; padding: 2px 6px; border-radius: 4px; color: #888; height: fit-content; }
-        .p-public { font-size: 0.7rem; border: 1px solid var(--green); color: var(--green); padding: 2px 6px; border-radius: 4px; height: fit-content; }
-        .p-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.4; }
 
-        /* RESPONSIVE */
-        @media (max-width: 900px) {
-            .bento-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
-            .exp-card { grid-column: span 1; }
-            .profile-card { grid-row: auto; }
+        .project-card {
+            background: #fff;
+            padding: 15px;
+            border-radius: 16px;
+            text-decoration: none;
+            border: 1px solid #f1f5f9;
+            transition: 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .project-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.03); border-color: var(--primary); }
+
+        .p-title { font-weight: 700; color: #1e293b; font-size: 0.95rem; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+        .p-desc { font-size: 0.8rem; color: #64748b; margin-bottom: 12px; line-height: 1.4; }
+        
+        .tags { display: flex; gap: 6px; flex-wrap: wrap; }
+        .tag { font-size: 0.7rem; padding: 3px 10px; border-radius: 20px; font-weight: 600; }
+        
+        .t-laravel { background: #fef2f2; color: #ef4444; }
+        .t-php { background: #eff6ff; color: #3b82f6; }
+        .t-java { background: #fff7ed; color: #f97316; }
+
+        @media (max-width: 768px) {
+            .glass-container { grid-template-columns: 1fr; height: auto; border-radius: 0; }
+            .profile-side { border-right: none; border-bottom: 1px solid #e2e8f0; }
+            body { padding: 0; align-items: flex-start; }
+            .projects-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <div class="bento-grid">
+    <main class="glass-container">
         
-        <div class="card profile-card">
+        <section class="profile-side">
+            
             <div class="avatar-container">
-                <div class="avatar">👨‍💻</div>
-                <div class="status-badge"><div class="pulse"></div> Trabajando</div>
-            </div>
-            <h1>Alejandro</h1>
-            <div class="subtitle">Full Stack Developer</div>
-            
-            <p class="bio">
-                Actualmente desarrollo soluciones en <strong>Babyplant</strong>. 
-                <br><br>
-                Soy experto en unir lógica de negocio compleja (PHP/Laravel) con arquitecturas modernas.
-                Me enfoco en crear código limpio, APIs REST eficientes y entornos Dockerizados listos para producción.
-            </p>
-
-            <div class="social-links">
-                <a href="mailto:tuemail@ejemplo.com" class="btn btn-primary">Contactar</a>
-                <a href="https://github.com/andreubaby" target="_blank" class="btn btn-outline">GitHub</a>
-                <a href="https://www.linkedin.com/in/alejandro-andreu-595088215/" target="_blank" class="btn btn-outline">LinkedIn</a>
-            </div>
-            
-            <div style="margin-top: 20px; font-size: 0.8rem; color: var(--muted);">
-                📍 Santomera, Murcia
-            </div>
-        </div>
-
-        <div class="card exp-card">
-            <div class="exp-header">
-                <div style="display:flex; gap:15px; align-items:center;">
-                    <div class="company-logo">BP</div> 
-                    <div>
-                        <div class="role-title">Desarrollador Full Stack</div>
-                        <div class="company-name">Babyplant</div>
+                <div class="avatar-img-wrapper">
+                    <span style="font-size: 3.5rem;">🧔🏻‍♂️</span>
+                    
                     </div>
-                </div>
-                <span class="date-badge">Sept 2024 - Actualidad</span>
+                <div class="status-pill"><div class="dot"></div> Babyplant</div>
             </div>
             
-            <p style="font-size: 0.9rem; color: #cbd5e1; margin-bottom: 10px;">
-                Desarrollo y mantenimiento de aplicaciones web críticas. Implementación de nuevas funcionalidades Full Stack y optimización de APIs REST.
+            <h1>Alejandro</h1>
+            <span class="role">Junior Backend Developer</span>
+
+            <p class="bio">
+                ¡Hola! Soy Alejandro. Estoy convirtiendo mi pasión por el desarrollo en mi profesión dentro de <strong>Babyplant</strong>.
+                <br><br>
+                Cada día es un nuevo reto para mejorar mi nivel en <strong>PHP y Laravel</strong>. Me motiva entender cómo funcionan las cosas "bajo el capó" (como Docker) y escribir código del que pueda sentirme orgulloso.
             </p>
+
+            <a href="mailto:alejandroaanaa.28@gmail.com" class="btn-base btn-primary">✉️ Contactar</a>
             
-            <div class="tech-pills">
-                <span class="pill pill-laravel">Laravel</span>
-                <span class="pill pill-js">JavaScript</span>
-                <span class="pill pill-docker">Docker</span>
-                <span class="pill" style="border:1px solid #475569; color:#94a3b8;">MySQL</span>
+            <div style="display: flex; gap: 10px; width: 100%;">
+                <a href="https://github.com/andreubaby" target="_blank" class="btn-base btn-ghost">GitHub</a>
+                <a href="https://www.linkedin.com/in/alejandro-andreu-595088215/" target="_blank" class="btn-base btn-ghost">LinkedIn</a>
             </div>
-        </div>
+        </section>
 
-        <div class="card terminal-card">
-            <div class="cmd-line">
-                <span class="prompt">➜</span> 
-                <span style="color: #fff">ls ~/projects/active</span>
-            </div>
-            <div class="output">
-                gestor_user/ <span style="color: #666"> (Blade)</span><br>
-                cronos-backend/ <span style="color: #666"> (PHP API)</span><br>
-                semillas/ <span style="color: #666"> (Laravel)</span>
-            </div>
-
-            <div class="cmd-line">
-                <span class="prompt">➜</span> 
-                <span style="color: #fff">cat stack_overview.json</span>
-            </div>
-            <div class="output" style="color: #e2e8f0;">
-                {<br>
-                &nbsp;&nbsp;"backend": ["PHP 8.x", "Laravel", "Java"],<br>
-                &nbsp;&nbsp;"frontend": ["Blade", "JavaScript", "TS"],<br>
-                &nbsp;&nbsp;"tools": ["Docker", "Git", "Postman"]<br>
-                }
-            </div>
-        </div>
-
-        <div class="card projects-card">
-            <h3 style="font-size:1.1rem; color:#fff; margin-bottom:10px;">Repositorios Recientes</h3>
+        <section class="content-side">
             
-            <a href="https://github.com/andreubaby/gestor_user" target="_blank" class="project-item">
-                <div class="p-top">
-                    <span class="p-name">📂 gestor_user</span>
-                    <span class="p-public">Public</span>
+            <div>
+                <h2>Experiencia Actual</h2>
+                <div class="exp-card">
+                    <div class="exp-header">
+                        <span class="company">Babyplant</span>
+                        <span class="date">Sep 2024 - Presente</span>
+                    </div>
+                    <div class="job-title">Desarrollador Full Stack</div>
+                    <p class="exp-desc">
+                        Participo en el mantenimiento y evolución de aplicaciones web internas. 
+                        Trabajo día a día con <strong>Laravel, JavaScript y MySQL</strong>, colaborando con el equipo para implementar nuevas funcionalidades.
+                    </p>
                 </div>
-                <div class="p-desc">
-                    Panel administrativo completo. Implementa autenticación segura, roles de usuario y vistas dinámicas con Blade.
-                </div>
-                <div style="margin-top:8px; display:flex; gap:5px;">
-                    <span class="pill pill-laravel" style="font-size:0.65rem;">Laravel</span>
-                    <span class="pill" style="font-size:0.65rem; border:1px solid #444; color:#aaa;">Blade</span>
-                </div>
-            </a>
+            </div>
 
-            <a href="https://github.com/andreubaby" target="_blank" class="project-item">
-                <div class="p-top">
-                    <span class="p-name">🔒 cronos-backend</span>
-                    <span class="p-private">Private</span>
-                </div>
-                <div class="p-desc">
-                    Núcleo lógico para control de tiempos y personal. API RESTful pura en PHP optimizada para alto rendimiento.
-                </div>
-                <div style="margin-top:8px; display:flex; gap:5px;">
-                    <span class="pill pill-docker" style="font-size:0.65rem;">PHP</span>
-                    <span class="pill" style="font-size:0.65rem; border:1px solid #444; color:#aaa;">API Rest</span>
-                </div>
-            </a>
-            
-             <a href="https://github.com/andreubaby" target="_blank" class="project-item">
-                <div class="p-top">
-                    <span class="p-name">🔒 Camioneros-V2</span>
-                    <span class="p-private">Private</span>
-                </div>
-                <div class="p-desc">
-                    Sistema logístico para gestión de flotas. Lógica de negocio robusta en Java para cálculo de rutas.
-                </div>
-                <div style="margin-top:8px; display:flex; gap:5px;">
-                    <span class="pill" style="font-size:0.65rem; border:1px solid #f59e0b; color:#f59e0b;">Java</span>
-                </div>
-            </a>
+            <div>
+                <h2>Mis Proyectos</h2>
+                <div class="projects-grid">
+                    
+                    <a href="https://github.com/andreubaby/gestor_user" target="_blank" class="project-card">
+                        <div>
+                            <div class="p-title">📂 gestor_user</div>
+                            <p class="p-desc">Panel administrativo con roles y autenticación. Mi primer proyecto completo aplicando MVC.</p>
+                        </div>
+                        <div class="tags">
+                            <span class="tag t-laravel">Laravel</span>
+                            <span class="tag t-php">Blade</span>
+                        </div>
+                    </a>
 
-        </div>
+                    <a href="https://github.com/andreubaby" target="_blank" class="project-card">
+                        <div>
+                            <div class="p-title">🔒 cronos-backend</div>
+                            <p class="p-desc">API REST para gestión de tiempos. Enfocada en la lógica de negocio y respuesta rápida.</p>
+                        </div>
+                        <div class="tags">
+                            <span class="tag t-php">PHP 8</span>
+                            <span class="tag t-php">API</span>
+                        </div>
+                    </a>
 
-    </div>
+                    <a href="https://github.com/andreubaby" target="_blank" class="project-card">
+                        <div>
+                            <div class="p-title">🔒 Camioneros-V2</div>
+                            <p class="p-desc">Sistema de rutas logísticas. Desarrollo de algoritmos de gestión en Java.</p>
+                        </div>
+                        <div class="tags">
+                            <span class="tag t-java">Java</span>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+
+        </section>
+
+    </main>
 
 </body>
 </html>
